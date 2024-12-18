@@ -1,6 +1,5 @@
 class Solution {
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        boolean outputFlag = false;
 
         if(n == 0) {
             return true;
@@ -17,21 +16,20 @@ class Solution {
                     n--;
 
                     if (n == 0) {
-                        outputFlag = true;
-                        break;
+                        return true;
                     }
                 }
 
             } else {
                 if((flowerbed.length-i) < n*2) {
-                    break;
+                    return false;
                 }
             }
 
 
         }
 
-        return outputFlag;
+        return false;
     }
 
     public boolean checkLeft(int index, int[] flowerValue) {
