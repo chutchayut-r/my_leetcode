@@ -22,8 +22,13 @@ class Solution {
                     }
                 }
 
-                
+            } else {
+                if((flowerbed.length-i) < n*2) {
+                    break;
+                }
             }
+
+
         }
 
         return outputFlag;
