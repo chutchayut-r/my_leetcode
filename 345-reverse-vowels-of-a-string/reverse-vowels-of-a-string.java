@@ -18,8 +18,6 @@ class Solution {
                 while (right_index >= 0) {
 
                     if (vowelsFlag[right_index]) {
-                        vowelsFlag[left_index] = false;
-                        vowelsFlag[right_index] = false;
 
                         char temp = sentense[left_index];
 
