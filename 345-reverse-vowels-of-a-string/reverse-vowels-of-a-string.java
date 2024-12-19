@@ -1,34 +1,45 @@
 class Solution {
     public String reverseVowels(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        Stack<Character> vowelsStack = new Stack<>();
-        Queue<Integer> indexQueue = new LinkedList<>();
-        ArrayList<Character> vowelsList = new ArrayList<>();
+        char[] sentense = s.toCharArray();
+        boolean[] vowelsFlag = new boolean[sentense.length];
+        char[] vowels = "aeiouAEIOU".toCharArray();
 
-        vowelsList.add('a');
-        vowelsList.add('e');
-        vowelsList.add('i');
-        vowelsList.add('o');
-        vowelsList.add('u');
+        for (int i = 0; i < sentense.length; i++) {
+            vowelsFlag[i] = false;
 
-        vowelsList.add('A');
-        vowelsList.add('E');
-        vowelsList.add('I');
-        vowelsList.add('O');
-        vowelsList.add('U');
-
-        for (int i = 0; i < s.length(); i++) {
-            char letter = s.charAt(i);
-
-            if (vowelsList.contains(letter)) {
-                vowelsStack.add(letter);
-                indexQueue.add(i);
+            for (char v : vowels) {
+                if (v == sentense[i]) {
+                    vowelsFlag[i] = true;
+                }
             }
         }
 
-        while (!vowelsStack.empty() && !indexQueue.isEmpty()) {
-            sb.setCharAt(indexQueue.poll(), vowelsStack.pop());
+        int right_index = sentense.length-1;
+        for (int left_index = 0; left_index < sentense.length; left_index++) {
+
+            if (vowelsFlag[left_index]) {
+                while (right_index >= 0) {
+
+                    if (vowelsFlag[right_index]) {
+                        vowelsFlag[right_index] = false;
+                        vowelsFlag[left_index] = false;
+
+                        char tmp = sentense[left_index];
+                        sentense[left_index] = sentense[right_index];
+                        sentense[right_index] = tmp;
+                        right_index--;
+                        break;
+                    }
+                    right_index--;
+                }
+            }
+
+            if (left_index >= right_index) {
+                break;
+            }
         }
-        return sb.toString();
+
+
+        return String.valueOf(sentense);
     }
 }
