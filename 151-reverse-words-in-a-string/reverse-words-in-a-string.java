@@ -1,38 +1,28 @@
 class Solution {
     public String reverseWords(String s) {
+        char[] chars = s.toCharArray();
         StringBuilder sb = new StringBuilder();
-        boolean beforeIsSpace = false;
-        ArrayList words = new ArrayList(){};
 
-        for (char charater : s.toCharArray()) {
-            if (charater == ' ') {  // space
-                if (!beforeIsSpace) {
+        for (int p1 = 0; p1 < s.length(); p1++) {
+           int p2;
 
-                    if (!sb.isEmpty()) {
-                        words.add(sb.toString());  // add word to word array.
-                        sb.delete(0,sb.length());
+            if (chars[p1] != ' ') {
+                p2 = p1 +1;
+
+                while (p2 < s.length()) {
+                    if (chars[p2] == ' ') {
+                        break;
+                    } else {
+                       p2++;
                     }
-
-                    beforeIsSpace = true;
                 }
-            } else {    // ASCII
-                beforeIsSpace = false;
-                sb.append(charater);
+                if (sb.length() > 0) {
+                    sb.insert(0,' ');
+                }
+                sb.insert(0,s.substring(p1,p2));
+                p1 = p2;
             }
-        }
 
-        // To support case, End index is not space.
-        if (!sb.isEmpty()) {
-            words.add(sb.toString());
-            sb.delete(0, sb.length());
-        }
-
-        for (int index = words.size()-1; index >= 0; index--) {
-
-            sb.append(words.get(index));
-            if (index <= words.size()-1 && index > 0) {
-                sb.append(" ");
-            }
         }
 
         return  sb.toString();
