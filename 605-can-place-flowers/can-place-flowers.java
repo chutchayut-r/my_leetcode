@@ -20,13 +20,12 @@ class Solution {
                     }
                 }
 
-            } else {
+            } 
+            else {
                 if((flowerbed.length-i) < n*2) {
                     return false;
                 }
             }
-
-
         }
 
         return false;
