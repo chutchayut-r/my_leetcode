@@ -22,7 +22,6 @@ class Solution {
                 sb.insert(0,s.substring(p1,p2));
                 p1 = p2;
             }
-
         }
 
         return  sb.toString();
