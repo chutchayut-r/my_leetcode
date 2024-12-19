@@ -2,10 +2,10 @@ class Solution {
     public String reverseWords(String s) {
         char[] chars = s.toCharArray();
         StringBuilder sb = new StringBuilder();
+        int p2;
 
         for (int p1 = 0; p1 < s.length(); p1++) {
-           int p2;
-
+           
             if (chars[p1] != ' ') {
                 p2 = p1 +1;
 
