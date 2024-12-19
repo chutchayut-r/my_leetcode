@@ -2,16 +2,13 @@ class Solution {
     public String reverseVowels(String s) {
         char[] sentense = s.toCharArray();
         boolean[] vowelsFlag = new boolean[sentense.length];
-        char[] vowels = "aeiouAEIOU".toCharArray();
+        boolean[] vowels = new boolean[128];   // 1 byte Max value = 128;
+        for(char c :"aeiouAEIOU".toCharArray()) {
+            vowels[c] = true;
+        }
 
         for (int i = 0; i < sentense.length; i++) {
-            vowelsFlag[i] = false;
-
-            for (char v : vowels) {
-                if (v == sentense[i]) {
-                    vowelsFlag[i] = true;
-                }
-            }
+            vowelsFlag[i] = vowels[sentense[i]];
         }
 
         int right_index = sentense.length-1;
@@ -21,12 +18,13 @@ class Solution {
                 while (right_index >= 0) {
 
                     if (vowelsFlag[right_index]) {
-                        vowelsFlag[right_index] = false;
                         vowelsFlag[left_index] = false;
+                        vowelsFlag[right_index] = false;
 
-                        char tmp = sentense[left_index];
+                        char temp = sentense[left_index];
+
                         sentense[left_index] = sentense[right_index];
-                        sentense[right_index] = tmp;
+                        sentense[right_index] = temp;
                         right_index--;
                         break;
                     }
@@ -38,7 +36,6 @@ class Solution {
                 break;
             }
         }
-
 
         return String.valueOf(sentense);
     }
