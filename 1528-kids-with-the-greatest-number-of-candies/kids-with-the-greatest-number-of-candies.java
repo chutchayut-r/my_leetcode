@@ -1,23 +1,24 @@
 class Solution {
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        TreeSet<Integer> treeSet = new TreeSet<>();
-        
-        for (int c = 0; c < candies.length; c++) {
-           treeSet.add(candies[c]);
+        List<Boolean> results = new ArrayList<>();
+        int maxCandie = 0;
+
+        // Find max
+        for (int index = 0; index < candies.length; index++) {
+            if (candies[index] > maxCandie) {
+                maxCandie = candies[index];
+            }
         }
 
-        Integer max = treeSet.last();
-        Integer min = max - extraCandies;
-
-        List<Boolean> booleanList = new ArrayList<>();
-        for (int c = 0; c < candies.length; c++) {
-            Boolean bool = false;
-           if (candies[c] >= min) {
-                bool= true;
-           }
-            booleanList.add(bool);
+        // Compare
+        for (int cnt = 0; cnt < candies.length; cnt++) {
+            if(candies[cnt] + extraCandies < maxCandie) {
+                results.add(false);
+            } else {
+                results.add(true);
+            }
         }
 
-        return booleanList;
+        return results;
     }
 }
