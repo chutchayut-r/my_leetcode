@@ -5,19 +5,19 @@ class Solution {
         int r = height.length-1;
 
         while (l < r) {
+            int minHeight = Math.min(height[l], height[r]);
+            int area = minHeight * (r-l);
 
-            int minHeight = Math.min(height[l], height[r]); 
-            int area = minHeight * (r - l);
+            max_area = Math.max(max_area, area);
 
-            max_area = Math.max(area, max_area);
-
-            if (height[l] >= height[r]) {
-                r--;
-            } else {
+            if (height[l] <= height[r]) {
                 l++;
+            } else {
+                r--;
             }
+
         }
-        
+
         return max_area;
     }
 }
