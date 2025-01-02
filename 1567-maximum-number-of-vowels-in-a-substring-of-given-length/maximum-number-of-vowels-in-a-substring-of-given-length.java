@@ -28,7 +28,7 @@ class Solution {
                 curNumVowel++;
             }
 
-            maxNumVowel = Math.max(maxNumVowel,curNumVowel);
+           maxNumVowel = maxNumVowel < curNumVowel ? curNumVowel:maxNumVowel;
         }
 
         return maxNumVowel;
