@@ -2,10 +2,13 @@ class Solution {
     public int maxVowels(String s, int k) {
         int maxNumVowel = 0;
         char[] chars = s.toCharArray();
-
-        String window = s.substring(0,k);
-        maxNumVowel = countNumberOfVowel(window.toCharArray());
-
+        
+        for (int index = 0; index < k; index++) {
+            if (this.isVowel(chars[index])) {
+                maxNumVowel++;
+            }
+        }
+        
         int curNumVowel = maxNumVowel;
 
         for (int round = 0; round < s.length()-k; round++) {
@@ -30,20 +33,7 @@ class Solution {
 
         return maxNumVowel;
     }
-
-    public int countNumberOfVowel(char[] window) {
-        int vowelNum = 0;
-
-
-        for (char c : window) { // check c is vowel and count the vowel number.
-            if (isVowel(c)) {
-                vowelNum++;
-            }
-        }
-
-        return vowelNum;
-    }
-
+    
     public boolean isVowel(char ch) {
         return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
     }
