@@ -4,22 +4,22 @@ class Solution {
         Set<Integer> list1 = new HashSet<>();
         Set<Integer> list2 = new HashSet<>();
 
-        for (int num : nums1) {  // Map of num1
+        for (int num : nums1) { 
             list1.add(num);
         }
 
-        for (int num : nums2) { // Map of num2
+        for (int num : nums2) { 
             list2.add(num);
         }
 
-        for (int num : nums2) {  // Check num1 with Map2
+        for (int num : nums2) { 
             if (list1.contains(num)){
                 list1.remove(num);
             }
         }
         output.add(new ArrayList<>(list1));
 
-        for (int num : nums1) { // Check num2 with Map1
+        for (int num : nums1) { 
             if (list2.contains(num)){
                 list2.remove(num);
             }
